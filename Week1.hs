@@ -32,16 +32,14 @@ module Week1 where
              | otherwise = b
 
     --Q5 Work out average of 4 grades and give suitable mark
-    mean4 :: Integer -> Integer -> Integer -> Integer -> Integer
-    mean4 a b c d = (a + b + c + d) `div` 4
-
     grades :: Integer -> Integer -> Integer -> Integer -> String
-    grades g1 g2 g3 g4 | (mean4 g1 g2 g3 g4) >= 70 = "H1"
-                       | (mean4 g1 g2 g3 g4) >= 60 = "H2.1"
-                       | (mean4 g1 g2 g3 g4) >= 50 = "H2.2"
-                       | (mean4 g1 g2 g3 g4) >= 45 = "H3"
-                       | (mean4 g1 g2 g3 g4) >= 40 = "Pass"
-                       | otherwise                 = "Fail"
+    grades g1 g2 g3 g4 | mean >= 70 = "H1"
+                       | mean >= 60 = "H2.1"
+                       | mean >= 50 = "H2.2"
+                       | mean >= 45 = "H3"
+                       | mean >= 40 = "Pass"
+                       | otherwise  = "Fail"
+                           where mean = (g1 + g2 + g3 + g4) `div` 4
 
     --Q6 Get all odd numbers from a list of Integers
     oddItems :: [Int] -> [Int]
@@ -58,16 +56,14 @@ module Week1 where
     -}
 
     --Q8 Same as Q5 but for a list of grades
-    meanN :: [Int] -> Float
-    meanN xs = fromIntegral (sum xs) / fromIntegral (length xs)
-
     gradesList :: [Int] -> String
-    gradesList xs | (meanN xs) >= 70 = "H1"
-                  | (meanN xs) >= 60 = "H2.1"
-                  | (meanN xs) >= 50 = "H2.2"
-                  | (meanN xs) >= 45 = "H3"
-                  | (meanN xs) >= 40 = "Pass"
-                  | otherwise        = "Fail"
+    gradesList xs | mean >= 70 = "H1"
+                  | mean >= 60 = "H2.1"
+                  | mean >= 50 = "H2.2"
+                  | mean >= 45 = "H3"
+                  | mean >= 40 = "Pass"
+                  | otherwise  = "Fail"
+                      where mean = (fromIntegral (sum xs) / fromIntegral (length xs))
 
     --Q9 = Challenge... Do later
 
