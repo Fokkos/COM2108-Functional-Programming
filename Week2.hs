@@ -86,3 +86,11 @@ module Week2 where
     --b) decrement an integer value
     decrement :: Int -> Int
     decrement n = (\x -> x - 1) n
+
+    --Q10 Luhn Algorithm
+    luhnDouble :: Int -> Int
+    luhnDouble n | (n * 2) > 9 = ((n * 2) - 9)
+                 | otherwise   = (n*2)
+
+    luhn :: Int -> Int -> Int -> Int -> Bool
+    luhn n1 n2 n3 n4 = (((luhnDouble n1) + (n2) + (luhnDouble n3) + n4) `mod` 10 == 0)
