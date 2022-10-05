@@ -94,3 +94,31 @@ module Week2 where
 
     luhn :: Int -> Int -> Int -> Int -> Bool
     luhn n1 n2 n3 n4 = (((luhnDouble n1) + (n2) + (luhnDouble n3) + n4) `mod` 10 == 0)
+
+    --Q11 evaluate nth 5, just write down each recursion on paper lol
+
+    --Q12 Euclid using recursion :)
+    euclid :: Int -> Int -> Int
+    euclid a b | a == b    = a
+               | a > b     = euclid (a - b) b
+               | otherwise = euclid (b - a) a
+
+    --Q13 recreate sum, take and last using recursion
+    q13sum :: [Int] -> Int
+    q13sum (x:y:xs) | (length xs) == 0 = x + y
+                    | otherwise        = q13sum ([x + y] ++ xs)
+
+    q13take :: Int -> [a] -> [a]
+    q13take 0 _ = []
+    q13take _ [] = []
+    q13take n (x:xs) = x : q13take (n-1) xs
+
+    q13last :: [a] -> a
+    q13last (x:xs) | (length xs) == 0 = x
+                   | otherwise        = q13last xs
+
+    --Q14 recreate zip
+    q14zip :: [a] -> [b] -> [(a, b)]
+    q14zip [] _ = []
+    q14zip _ [] = []
+    q14zip (x:xs) (y:ys) = (x, y) : q14zip xs ys
