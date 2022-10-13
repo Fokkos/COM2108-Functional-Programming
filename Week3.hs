@@ -86,12 +86,22 @@ module Week3 where
 
     --Q4 Rewrite the following expressions as list comprehensions:
     --a) map (+3) xs
-    q4a :: [Integer] -> [Integer]
-    q4alist = [1..5]
-    q4a xs = foldr (\x xs -> x + 3 : xs) [] xs
+    q4a :: [Int] -> [Int]
+    q4a xs = [x + 3 | x <- xs]
 
     --filter (>7) xs
-    q4b :: [Integer] -> [Integer]
-    q4blist = [1..10]
-    q4b = foldr (\x xs -> if x < 7 then x : xs else xs) []
+    q4b :: [Int] -> [Int]
+    q4b xs = [x | x <- xs, (x < 7)]
+
+    --c) concat (map (\x -> map (\y -> (x,y)) ys) xs)
+    q4c :: [Int] -> [Int] -> [(Int, Int)]
+    q4c xs ys = [(x, y) | x <- xs, y <- ys]
+
+    --d) filter (>3) (map (\(x,y) -> x+y) xys)
+    q4d :: [(Int, Int)] -> [Int]
+    q4d xys = [x + y | (x,y) <- xys, (x + y > 3)]
+
+    --Q6 maximum using fold
+    q6max :: [Int] -> Int
+    q6max xs = foldr (\a b -> if b > a then b else a : xs) []
 
