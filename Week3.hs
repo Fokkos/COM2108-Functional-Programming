@@ -101,7 +101,12 @@ module Week3 where
     q4d :: [(Int, Int)] -> [Int]
     q4d xys = [x + y | (x,y) <- xys, (x + y > 3)]
 
-    --Q6 maximum using fold
+    --Q5 explain mystery function 
+    mystery xs = foldr (++) [] (map sing xs)
+    where sing x = [x]
+    --turns a list of Integers into a list of list of integers
+
+    --Q6 recreate maximum using fold
     q6max :: [Int] -> Int
-    q6max xs = foldr (\a b -> if b > a then b else a : xs) []
+    q6max (x:xs) = foldr (\a b -> if b > a then b else a ) x xs
 
