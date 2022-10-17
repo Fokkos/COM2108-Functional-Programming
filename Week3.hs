@@ -103,10 +103,24 @@ module Week3 where
 
     --Q5 explain mystery function 
     mystery xs = foldr (++) [] (map sing xs)
-    where sing x = [x]
+        where sing x = [x]
     --turns a list of Integers into a list of list of integers
 
     --Q6 recreate maximum using fold
     q6max :: [Int] -> Int
     q6max (x:xs) = foldr (\a b -> if b > a then b else a ) x xs
+
+    --Q8 Define a function altMap :: (a->b) -> (a->b) -> [a] -> [b] that
+    --alternately applies its two argument functions to successive elements in a list,
+    --in turn about order 
+    altMap :: (a->b) -> (a->b) -> [a] -> [b]
+    altMap f g (xs) = foldr (\x xs -> if (length xs `mod` 2 == 0) then f x : xs else g x : xs) [] xs
+
+    --Q9 Luhn Algorithm with altMap
+    luhnDouble :: Int -> Int
+    luhnDouble n | (n * 2) > 9 = ((n * 2) - 9)
+                 | otherwise   = (n*2)
+
+    altLuhn :: [Int] -> Bool
+    altLuhn xs = (sum (altMap (+0) luhnDouble xs)) `mod` 10 == 0
 
